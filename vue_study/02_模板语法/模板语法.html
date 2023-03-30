@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>模板语法</title>
+</head>
+<body>
+        
+    <!-- 
+        Vue 模板语法有两大类：
+        1 插值语法:
+        功能:用于解析标签体内容。
+        写法:{{xxx}},xxx 是js 表达式，且可以直接读取到data中所有的属性
+        2 指令语法:
+        功能:用于解析标签（标签属性,标签体内容,绑定事件 ....）
+        举例： v-bind:href= "xxx" 简写为 :href="xxx"
+
+     -->
+
+    <div id="root">
+        <h1>
+            插值语法
+        </h1>
+        <h3>RSI-Moving Average MARTINGALE Trading Strategy</h3>
+        <hr>            
+        <h1>指令语法</h1>
+        <a  v-bind:href="url">Conners is a trading industry group with over thirty five years of trading experience  that we can learn from</a>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el:"#root",
+            data:{
+                name:"jack",
+                url:"http://www.atguigu.com"
+            }
+        })
+    </script>
+</body>
+</html>
