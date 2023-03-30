@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>Hello Vue</title>
+</head>
+<body>
+
+    <div id="root">
+        <h1>Hello ---{{name}}</h1>
+    </div>
+    
+    <script type="text/javascript">        
+        // 开启vue
+        // 让vue 实例 和 div 容器建立起联系关系
+        new Vue({
+            el:"#root",// el 指定当前的vue 实例为哪个容器服务
+            // data 供el 指定的容器所使用 
+            data:{
+                "name":"RSI-Moving Average MARTINGALE Trading Strategy"
+            }
+            
+        })
+    </script>
+</body>
+</html>
