@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>el和data的两种写法</title>
+</head>
+<body>
+
+    <div id = "root">        
+        <!--    
+            el 有两种写法 
+            data 也有两种写法
+            由Vue 管理的函数，一定不要写成箭头函数，一旦写了箭头函数，this 就不再是vue 实例了
+         -->
+        <div>Hello {{name}}</div>         
+    </div>
+
+    <script type="text/javascript">
+        const v = new Vue({            
+            // el:"#root",//第一种写法
+            // data 的第一种写法
+            // data:{
+            //     name:"RSI Moving Average MARTINGALE Trading Strategy"
+            // }
+             // data 的第二种写法 后面组件化的时候 必须用这个函数返回
+            data:function(){
+                // 此处的this 是vue 示例对象
+                console.log(this);
+                return {
+                    name:"therefore, if you are a Forex Trader"
+                }
+            }
+        })
+
+        console.log(v)
+        // el第二种写法
+        v.$mount("#root")       
+       
+    
+
+    </script>
+    
+</body>
+</html>
+
