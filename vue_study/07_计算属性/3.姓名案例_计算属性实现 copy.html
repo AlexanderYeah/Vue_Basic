@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>template</title>
+</head>
+<body>
+    <!-- 计算属性
+        1> 定义:要用的属性不存在 要通过已有的属性计算得来
+        2> 原理:底层接住了Object.defineproperty 方法提供的getter 和 setter
+        3> get 什么时候调用? 1.初次读取fullName的时候 2.所依赖的数据发生变化的时候
+        4> 优势:内部有缓存机制,效率更高,测试方便
+    -->
+    <div id = "root">                       
+        姓: <input type="text" v-model = "firstName">
+        <br><br>
+        名: <input type="text" v-model = "lastName" >
+        <br><br>
+        输入的姓名:{{fullName}}
+    </div>
+        
+    <script type="text/javascript">
+       const vm = new Vue({
+        el:"#root",
+        data:{
+            firstName:"张三",
+            lastName:"李四"
+        },
+        computed:{
+            fullName:{
+                // get有什么作用 当有人读取fullName的时候 get 就会被调用,且返回值就作为fullName 的值
+                // get 什么时候调用? 1.初次读取fullName的时候 2.所依赖的数据发生变化的时候
+                get(){
+                    return this.firstName + this.lastName
+                },
+                // set 什么时候调用？ 当fullName 修改的时候
+                // set(value){
+                //     console.log(value)
+                // }
+            }
+        }
+        
+       })
+
+    </script>
+    
+</body>
+</html>
+
