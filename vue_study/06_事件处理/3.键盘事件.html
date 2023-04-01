@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>template</title>
+</head>
+<body>
+
+    <div id = "root">     
+        
+        <!-- 1 Vue 中的常用按键别名为
+            1> 回车 enter
+            2> 删除 delete
+            3> 退出 esc
+            4> 空格 sapce
+            5> 换行 tab 这个比较特殊 要使用keydown 才能有效
+            6> 上 up
+            7> 下 down
+            8> 左 left
+            9> 右 right
+
+        2 Vue 没有提供的别名 可以自己去使用原始的key 值去绑定    
+        3 系统修饰键:ctrl alt shift meta
+            ctrl.y 就是代表 ctrl + y  才能起作用
+            1> 配合keyup使用:按下修饰键的同时，再按下其他键，然后释放其他键,事件才触发
+            2> 配合keydown使用，正常触发事件
+            
+        4 Vue.config.keyCodes.自定义键名 = 键盘码，可以去定制按键别名
+
+
+        -->
+        <!-- vue 中 enter 就表示按键回车才回调方法 -->
+        <input type="text" placeholder="按下回车提示输入" @keyup.enter="showInfo">
+    </div>
+
+    <script type="text/javascript">                                
+
+        // Vue.config.keyCodes.huiche = 13;
+
+        new Vue({
+            el:"#root",
+            methods:{
+                showInfo(e){
+                    // 传统的方式 判断键盘的回车键的输入码
+                    // if(e.keyCode != 13)return;
+                    console.log(e.target.value);
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>
+

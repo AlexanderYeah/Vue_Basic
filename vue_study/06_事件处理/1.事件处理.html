@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>template</title>
+</head>
+<body>
+    <!-- 
+        事件的基本使用
+        1> 使用v-on:xxx 或者@ 符号 绑定事件
+        2> 事件的回调需要配置再methods 对象中,最终会在vm 上
+        3> method 中配置的函数，不要使用箭头函数，否则this 就不是vm了
+        
+     -->
+    <div id = "root">        
+        <div> Stock Trader,Futures Trader  </div>
+        <button v-on:click="showInfo1">click me show you sth</button>
+        <br>
+        <button @click="showInfo2($event,'message')">click me show you sth 2</button>
+        <!-- <button v-on:click="showInfo2:">click me show you sth 2</button> -->
+    </div>
+
+    <script type="text/javascript">
+       let alertMessage1 = "And you want to use this trading strategy,it's a good path to take";
+       const vm = new Vue({
+        el:"#root",
+        methods:{
+            showInfo1(event){
+                alert(alertMessage1)
+            },            
+            showInfo2(event,str){
+                console.log(str)
+                alert(alertMessage1 + str)
+            }  
+        }
+       });
+
+    </script>
+    
+</body>
+</html>
+

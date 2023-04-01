@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>template</title>
+
+    <style> 
+        *{
+            margin-top: 20px;
+        }
+        .demo1{
+            height: 100;
+            background-color: sandybrown;
+            margin-top: 20;
+        }
+        .list{
+            width: 200px;
+            height: 200px;
+            background-color:aquamarine;             
+            overflow: auto;
+        }
+        li{
+            height: 100px;
+        }
+
+    
+    </style>
+</head>
+<body>
+
+    <div id = "root">        
+    <!--Vue 中 这个 prevent 就是事件修复符
+        1> prevent 阻止默认事件(常用)
+        2> stop 阻止事件冒泡(常用)
+        3> once 事件只触发一次(常用)
+        4> capture:使用事件的捕获方式
+        5> self:只有event.target 是当前操作的元素时候才是触发事件
+        6> passive: 事件的行为是立即执行 无需等待时间回调执行完毕
+    -->
+        <!--1  阻止默认事件 -->
+        <a href="https://www.baidu.com" @click.prevent = "showInfo" >let get the ball rolling by ...</a>
+        <!-- 2 阻止事件冒泡 -->
+        <div class="demo1" @click="showInfo">
+            <!-- 阻止冒泡 -->
+            <button @click.stop="showInfo">The RSI-Moving Average MARTINGALE Trading Strategy</button>
+        </div>
+        <!-- 3 事件只会触发一次 -->
+        <button @click.once="showInfo">The RSI-Moving Average MARTINGALE Trading Strategy</button>
+
+        <!-- passive 如果在demo 方法中做了耗时的操作 那么只有等待耗时操作执行完毕之后 
+            页面的滚动效果才会发生 使用 passive 则不用等待
+        -->
+        <ul @wheel.passive="demo" class="list">
+            <li>combines the time element</li>
+            <li>with the price elemenmt</li>
+            <li>and the power of scaling into a position</li>
+            <li>to find overbought and oversold situation in the market</li>
+        </ul>
+
+    </div>
+
+    <script type="text/javascript">
+       
+        new Vue({
+            el:"#root",
+            methods:{
+                showInfo(event){
+                    // js 中阻止这个a 标签跳转的行为 取消其默认行为                
+                    // event.preventDefault()
+                    // 阻止事件冒泡
+                    // event.stopPropagation()
+                    alert("By laying down the foundation for the RSI Moving Average MARTINGALE Trading Strategy")
+                },
+                // 滚轮滚动的时候触发这个事件
+                demo(){
+                    for (let i = 0; i < 100000; i++) {                        
+                        console.log(i);
+                    }
+                    console.log("ok finished");
+                }   
+            }
+        })
+    </script>
+    
+</body>
+</html>
+
