@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>template</title>
+</head>
+<body>
+
+    <div id = "root"> 
+        
+        <!-- 条件渲染
+        
+        1.v-if:适用于切换频率比较低的场景，v-if 可以和v-else-if v-else 一起搭配使用,但是结构不能打断
+        2.v-show:适用于切换频率比较高的场景
+        3.备注:使用v-if事后,元素可能无法获取到,而使用v-show一定可以获取到
+        
+        -->
+       
+        <!-- 条件渲染 v-show -->
+        <h1 v-show="isShow">RSI-Moving Average MARTINGALE Trading Strategy</h1>
+        <!-- 条件渲染 v-if 也可以 v-else-if 搭配使用 -->
+        <h1 v-if="isShow" >Let's get the ball rolling by laying down the foundation for the RSI-Moving Average MARTINGALE Trading Sragtegy</h1>
+        <br>
+        <h2>{{n}}</h2>
+        <button @click="n++" >n加1</button>
+        <div v-if="n%3===0" >Angular</div>
+        <div v-if="n%3===1">React</div>
+        <div v-if="n%3===2">Vue</div>
+
+    </div>
+
+    <script type="text/javascript">
+       new Vue({
+        el:"#root",
+        data:{
+            n:0,
+            isShow:true,
+        }        
+       })
+
+    </script>
+    
+</body>
+</html>
+
