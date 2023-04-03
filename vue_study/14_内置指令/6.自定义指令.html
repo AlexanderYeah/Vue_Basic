@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>内置指令</title>
+</head>
+<body>
+
+ <!-- 自定义指令总结
+        一 定义语法
+            1.局部指令 new Vue(
+                directives:
+            )
+            2.全局指令 Vue.directive(指令名,配置对象)
+            
+
+        二 配置对象中常用的三个回调
+            1 bind 指令与元素成功绑定时进行调用
+            2 insert 指令所在元素被插入页面的时候 进行调用
+            3 update 指令所在的模板被重新解析的时候调用
+            
+        三 备注：
+            1 指令定义的时候 不加 v-,使用的时候要加v-
+            2 指令名如果是多个单词,不要使用驼峰命名法 使用-连接    
+        
+    -->
+
+    <!--  
+       需求1: 自定义指令 对n放大10倍                                     
+    -->
+    <div id = "root">    
+        <div v-pre>RSI Moving Average MARTINGALE Trading Strategy</div>        
+        <div>当前的n值是:
+            <span v-text="n"></span>
+        </div>
+        <div>放大十倍的的n值是:
+            <span v-big="n"></span>
+        </div>
+        <button @click="n++">n+1</button>
+
+        <hr>
+        <input type="text" v-fbind:value="n">
+
+    </div>
+
+    <script type="text/javascript">
+       new Vue({
+        el:"#root",
+        data:{
+            n:1
+        },
+        // 自定义指令
+        directives:{
+            // 第一种方式简写
+            // big 函数何时会调用 1.指令与元素成功绑定时 2.指令所在的模板被重新解析时候
+            big(element,binding){
+                // binding.value 是 n
+                element.innerText = binding.value * 10
+                // console.log(element)
+            },
+            // 第二种方式
+            fbind:{
+                // 以下是vue 的函数
+                // 指令与元素成功绑定时进行调用
+                binding(element,binding){
+                    element.value = binding.value
+                    // console.log("bind")
+                },
+                // 指令所在元素被插入页面的时候 进行调用
+                inserted(element,binding){
+                    element.focus()
+                    // console.log("inserted")
+                },
+                // 指令所在的模板被重新解析的时候调用
+                update(element,binding) {
+                    // console.log("update")
+                    element.value = binding.value                   
+                },
+
+            }
+        }
+       })       
+    </script>
+    
+</body>
+</html>
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>内置指令</title>
+</head>
+<body>
+    <!-- V-HTML
+        1.作用:向指定的节点中渲染包含HTML结构的内容
+        2.与差值语法的区别:
+            2.1 v-html 会替换掉节点的所有内容
+            2.2 v-html 可以识别html 结构
+        3 严重注意: v-html 有安全性问题
+            3.1 在网站动态渲染任意HTML是非常危险的，容易导致XSS攻击
+            3.2 一定要在可信的内容上使用v-html,永远不要在用户的提交内容上      
+                                
+    -->
+    <div id = "root">                
+        <div v-html = "content"></div>
+    </div>
+
+    <script type="text/javascript">
+       new Vue({
+        el:"#root",
+        data:{
+            content:"<h2>这是一个H2</h2>"
+        }
+       })
+
+    </script>
+    
+</body>
+</html>
+
