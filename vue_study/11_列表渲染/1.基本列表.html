@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>1基本列表</title>
+</head>
+<body>
+
+    <div id = "root"> 
+        <h2>遍历数组</h2>       
+        <!-- 遍历数组 -->
+        <ul>          
+            <li v-for="p in persons" :key="p.id">{{p.name}} - {{p.age}}</li>            
+        </ul>
+        <h2>遍历对象</h2> 
+        <!-- 遍历对象 -->
+        <ul>
+            <li v-for="(value,key) in car">{{value}}---{{key}}</li>            
+        </ul>
+        <h2>遍历字符串</h2> 
+        <ul>
+            <li v-for="(char,index) in str">{{char}}---{{index}}</li>
+        </ul>
+
+
+    </div>
+
+    <script type="text/javascript">
+    new Vue({
+        el:"#root",
+        data:{
+            persons:[
+                {id:"001",name:"leonardo",age:25},
+                {id:"002",name:"fibonacci",age:26},
+                {id:"003",name:"wanda",age:27}
+            ],
+            car:{
+                name:"Audi A8 L",
+                length:"5.2米",
+                price:"999999元"
+            },
+            str:"qwertyuiop",
+
+        },
+       
+
+    })
+
+    </script>
+    
+</body>
+</html>
+

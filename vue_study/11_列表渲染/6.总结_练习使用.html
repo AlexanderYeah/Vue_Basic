@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>template</title>
+</head>
+<body>
+
+    <div id = "root">     
+        
+        <!-- Vue 监视数据的原理
+        1.Vue 会监视data 中所有层次的数据
+
+        2.如何检测对象中的数据？
+            2.1通过setter 实现监控，且在new vue 时候就传入要监测的数据
+            2.2如果需要给后添加的属性做响应式,则使用以下的API：
+                Vue.set(target,property/index,value) 或者
+                vm.$set(target,property/index,value)
+
+        3.如何监测数组中的数据
+            通过包裹数组更新元素的方法实现，本质是做了两件事：
+            3.1 调用原生对应的方法对数组进行更新
+            3.2 重新解析模板，进而更新页面
+        
+        4.在Vue修改数组中的某个元素一定要用如下的方法
+            4.1 使用这些API push,pop,shift,unshift,splice,sort,reverse
+            4.2 Vue.set 或者 vm.$set
+
+        特别注意：Vue.set 或者 vm.$set 不能给vm 或者vm的根数据对象添加属性！！！    
+
+
+
+        
+        -->
+
+        <h2>学生信息</h2>
+
+        <button @click="student.age++">age + 1</button><br>
+        <button @click="addSex"> add sex:"male"</button><br>
+        <button @click="addFriend">在列表首位添加一个朋友</button><br>
+        <button @click="changeFirstFriend">修改第一个朋友的名字为张三</button><br>
+        <button @click="addOneHobby">添加一个爱好</button><br>
+        <button @click="changeFirstHobby">修改第一个爱好为开车</button>
+        <h3>name : {{student.name}}</h3>
+        <h3 v-if="student.sex">sex : {{student.sex}}</h3>
+        <h3>age : {{student.age}}</h3>
+        <h3>hobbys : </h3>
+        <ul>
+            <li v-for="(h,index) in student.hobby" :key="index">{{h}}</li>
+        </ul>
+        <h3>firends : </h3>
+        <ul>
+            <li v-for="(p,index) in student.firends">{{p.name}} -- {{p.age}}</li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+    new Vue({
+        el:"#root",
+        data:{            
+            student:{
+                name:"leonardo",            
+                age:25,
+                hobby:["time element","price element"],
+                firends:[
+                    {name:"apple",age:55},
+                    {name:"grape",age:54},                
+                ]
+            }
+        },
+        methods: {
+            addSex(){
+                Vue.set(this.student,"sex","male")
+            },
+            addFriend(){
+                this.student.firends.unshift({name:"curry",age:55})
+            },
+            changeFirstFriend(){
+                this.student.firends[0].name = "张三"
+            },
+            addOneHobby(){
+                this.student.hobby.unshift("overbought")
+            },
+            changeFirstHobby(){
+                //第一种方式
+                // this.student.hobby.splice(0,1,"开车")
+                // 第二种方式
+                Vue.set(this.student.hobby,0,"开车")
+            }
+        },
+
+    })
+
+    </script>
+    
+</body>
+</html>
+

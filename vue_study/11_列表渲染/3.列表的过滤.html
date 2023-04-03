@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>1基本列表</title>
+</head>
+<body>
+
+    <div id = "root"> 
+        <h2>遍历数组</h2>       
+        <input type="text" placeholder="请输入名字" v-model:value="keyword">        
+        <ul>          
+            <li v-for="p in filterPersons" :key="p.id">{{p.name}} - {{p.age}} - {{p.sex}}</li>            
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+
+        // 计算属性的方式实现
+        new Vue({
+            el:"#root",
+            data:{
+                keyword:"",
+                persons:[
+                    {id:"001",name:"马冬梅",age:25,sex:"女"},
+                    {id:"002",name:"周东雨",age:26,sex:"女"},
+                    {id:"003",name:"周杰伦",age:27,sex:"男"},
+                    {id:"004",name:"大谷伦",age:29,sex:"男"}
+                ],                            
+            },
+            computed:{
+                filterPersons(){
+                    return this.persons.filter((p)=>{
+                        return p.name.indexOf(this.keyword) !== -1
+                    })
+                }
+            }            
+        })
+
+        // 以下是用watch 方法实现过滤
+    // new Vue({
+    //     el:"#root",
+    //     data:{
+    //         keyword:"",
+    //         persons:[
+    //             {id:"001",name:"马冬梅",age:25,sex:"女"},
+    //             {id:"002",name:"周东雨",age:26,sex:"女"},
+    //             {id:"003",name:"周杰伦",age:27,sex:"男"},
+    //             {id:"004",name:"大谷伦",age:29,sex:"男"}
+    //         ],
+    //         filterPersons:[]            
+
+    //     },
+    //     watch:{
+    //         keyword:{
+    //             // 一个字符串indexOf 一个空串的索引值是0 所以这里立即执行这个handler 能把所有的数据过滤出来
+    //             immediate:true,
+    //             handler(val){
+    //                 // 过滤数组 
+    //                 this.filterPersons = this.persons.filter((p)=>{
+    //                     return p.name.indexOf(val) !== -1
+    //                 }
+    //                 )
+    //             }
+    //         }
+    //     }   
+       
+
+    // })
+
+    </script>
+    
+</body>
+</html>
+
