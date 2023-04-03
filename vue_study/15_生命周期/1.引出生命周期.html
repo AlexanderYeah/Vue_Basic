@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>template</title>
+</head>
+<body>
+    <!-- 生命周期
+        1.生命周期回调函数 vue 在关键时刻帮助我们调用的一些特殊名称的函数
+        2.生命周期函数名字不能更改
+        3.生命周期函数中的this指向的是vm 或者组件实例对象         
+    -->
+    <div id = "root">               
+        <h2 :style="{opacity: opacity}" >Let's get the ball rolling by laying down the foundation of the RSI-Moving Average MARTINGALE Trading Strategy</h2>
+    </div>
+
+    <script type="text/javascript">
+       const vm = new Vue({
+        el:"#root",
+        data:{
+            // 改变透明度
+            opacity:1
+        },
+          
+        // 挂载完毕
+        // Vue 完成模板的解析并且把真实的DOM 元素放入页面后调用mounted
+        mounted() {
+            console.log("mounted")
+            setInterval(()=>{
+                    vm.opacity -= 0.01
+                    if(vm.opacity <= 0) vm.opacity = 1
+            },16)
+        },
+       })
+       // 通过外部的定时器实现(不推荐)
+        // 写一个定时器 改变其透明度
+        // setInterval(()=>{
+        //     vm.opacity -= 0.01
+        //     if(vm.opacity <= 0) vm.opacity = 1
+        // },16)
+    </script>
+    
+</body>
+</html>
+
