@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>收集表单数据</title>
+</head>
+<body>
+    <!-- 收集表单数据
+        1 若<input type="text"/>,则v-model 收集的是value 的值,用户输入的就是value 的值
+        2 若<input type="radio"/>, 则v-model 收集的是value 的值,且要给标签配置value属性
+        3 若<input type="checkbox"/>,
+            3.1 没有配置input 的value 属性，那么收集的就是checked(勾选或者未勾选,就是bool值)                        
+            3.2 配置了input的value 属性 
+                -> v-model 的初始值是非数组，那么收集的就是checked 
+                -> v-model 的初始值是数组,那么收集的即使value 组成的数组
+
+        4 备注：v-model 的三个修饰符
+            4.1 lazy:失去焦点再去收集数据
+            4.2 number:输入字符串转为有效的数字
+            4.3 trim: 输入的收尾空格过滤
+                            
+    -->
+
+
+
+    <div id = "root">        
+       <br><br>
+       <!-- prevent 阻止跳转 -->
+        <form @click.prevent = "demo">
+            <!-- 账号 -->
+            <label for="name">账号</label>
+            <input type="text" id="name" v-model="account">
+            <br>
+            <br>
+            <!-- 密码 trim 去除空格 -->
+            <label for="password">密码</label>
+            <input type="text" id="password" v-model.trim="password">
+            <br>
+            <br>
+            <!-- 年龄  第一个number 控制只能输入数字 第二个number 收集输入为数字类型 -->          
+            年龄 
+            <input type="number" v-model.number="age">
+            <br>
+            <br>
+            <!-- 性别 -->
+            性别:
+            男 <input type="radio" name="sex" v-model="sex" value="male">
+            女 <input type="radio" name="sex" v-model="sex" value="female">
+            <br>
+            <br>
+             <!-- 爱好 -->
+             爱好:
+             学习 <input type="checkbox" v-model="hobby" value="study">
+             跑步 <input type="checkbox" v-model="hobby" value="running">
+             游戏 <input type="checkbox" v-model="hobby" value="game"> 
+             <br>
+             <br>
+             <!-- 所属小区 -->
+             所属小区
+             <select name="" id="" v-model = "area">
+                <option value="">请选择校区</option>
+                <option value="SOUTH">SOUTH</option>
+                <option value="NORTH" > NORTH</option>
+                <option value="EAST">EAST</option>
+                <option value="WEST">WEST</option>
+             </select>
+             <br>
+             <br>
+            <!-- 其他信息 lazy 修饰符 等所有输入完之后收集信息 -->
+            其他信息
+            <textarea name="" id="" cols="30" rows="10" v-model.lazy="other">
+
+            </textarea>
+            <br>
+             <br>
+            <!-- 用户协议 -->
+            阅读并接受
+            <input type="checkbox" v-model="agree">     
+            <a href="">用户协议</a>              
+            <br><br>
+            <button>提交</button>
+
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el:"#root",
+            data:{
+                account:"",
+                password:"",
+                age:"",
+                sex:"",
+                hobby:[],
+                area:"",
+                other:"",
+                agree:""                
+            },
+            methods: {
+                demo(){
+                    console.log(this.account)
+                    console.log(this.password)
+                }
+            },
+
+        })
+
+    </script>
+    
+</body>
+</html>
+
