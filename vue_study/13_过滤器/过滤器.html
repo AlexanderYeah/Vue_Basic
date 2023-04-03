@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <script type="text/javascript" src = "../js/dayjs.min.js"></script>
+    <title>过滤器</title>
+</head>
+<body>
+    <!-- 过滤器
+        定义:对要显示的数据进行特定格式化后再去显示(适用于一些简单的逻辑处理)
+        语法:1.注册过滤器：Vue.filter(name.callback) 或者 v-bind:属性 = "xxx | 过滤名"
+        备注:
+            1 过滤器也可以接受额外参数,多个过滤器也可以串联
+            2 并没有改变原来的数据结构，是产生新的对应的数据    
+    
+    -->
+    <div id = "root">        
+        <h2>显示格式化后的时间</h2>
+        <h2>现在是:{{time}}</h2></h2>
+        <!-- 计算属性实现 -->
+        <h2>现在是{{formateTime}}</h2>
+         <!-- method实现 -->
+         <h2>现在是{{getFormateTime()}}</h2>
+         <!-- 过滤器实现 等于是把time 作为参数传递给 timeFormater 返回值-->
+         <h2>现在是{{time | timeFormater}}</h2>
+    </div>
+
+    <script type="text/javascript">
+        new Vue({
+            el:"#root",            
+            data: {
+                time:1680503594801,
+            },
+            computed:{
+                formateTime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            },
+            methods: {
+                getFormateTime(){
+                    return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss') 
+                }
+            },
+            filters:{
+                timeFormater(time){
+                    return dayjs(time).format('YYYY-MM-DD HH:mm:ss')
+                }
+            }
+        })
+
+    </script>
+    
+</body>
+</html>
+
