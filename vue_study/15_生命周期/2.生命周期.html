@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>template</title>
+</head>
+<body>
+
+    <div id = "root">        
+       
+
+    </div>
+
+    <script type="text/javascript">
+       new Vue({
+        el:"#root",
+        data:{
+            n:11
+        },
+        // 挂载流程 四步
+        beforeCreate() {
+          console.log(beforeCreate)  
+        },
+
+        created() {
+            console.log(created)  
+        },
+        beforeMount() {
+            console.log(beforeMount)
+        },
+        mounted() {
+            
+        },
+
+        // 下面是更新的流程
+        beforeUpdate() {
+            // 此时 页面和数据尚未保持同步
+        },
+        updated() {
+            // 页面和数据保持了同步
+        },
+        // 以下是销毁流程
+        beforeDestroy() {
+            // 此时data methods 指令都处在可用的状态
+            // 一般在此阶段:关闭定时器 取消订阅消息 解绑自定义事件等收尾操作
+        },
+        destroyed() {
+            
+        },
+
+       })
+       
+
+    </script>
+    
+</body>
+</html>
+
