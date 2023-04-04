@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>组件的嵌套</title>
+</head>
+<body>
+
+    <div id = "root">        
+       
+
+    </div>
+
+    <script type="text/javascript">
+    // 三级 student
+    const student = {
+            template:`<h2>{{name}}</h2>`,
+            data() {
+                return {
+                    name:"Basically"
+                }
+            },
+        }
+
+     // 二级
+    const school = {
+            template:`<div>
+                <h2>name : {{schoolName}}</h2>
+                <h2>address:  {{address}}</h2>
+                <student></student>
+                </div>`,
+            data() {
+                return {
+                    schoolName:'currencies',
+                    address:'pullbacks'                            
+                }
+            },    
+            components:{
+                student
+            }
+     }
+    
+       // 定义一个一级组件  App    <school></school>
+        const app = {        
+            template:`<div>
+                <school></school>
+                </div>`,
+            components:{school:school}
+        }
+        
+        new Vue({
+            template:`<app></app>`,
+            el:"#root",
+            components:{
+                app
+            }                
+        })
+    </script>
+    
+</body>
+</html>
+

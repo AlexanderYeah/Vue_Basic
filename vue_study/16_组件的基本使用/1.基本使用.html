@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>组件化的基本使用</title>
+</head>
+<body>
+
+    <!-- Vue 中使用组件的三大步骤
+        一 定义组件(创建组件)
+        二 注册组件
+        三 使用组件(写组件标签)    
+    -->
+
+    <!-- 关于组件名
+        1 一个单词组成的话: 第一种写法 首字母小写school,第二种写法 首字母大写 School
+          多个单词组成但话: 第一种写法 kebab-case :my-school 第二种写法（camelCase） MySchool 需要脚手架支持
+
+        2 关于组件标签的写法
+            2.1 第一种写法 <school></school>  
+            2.2 第二种写法 <school/>
+            备注：不使用脚手架的时候 <school/> 会导致后续的组件不能渲染
+        
+        3 一个简写的方式
+            const school = Vue.extend(options) 可以简写为  const school = options
+                            
+    -->
+
+
+    <div id = "root">                
+        <!-- 3 使用组件 -->
+        <school></school>                    
+        <hr>
+        <student></student>
+    </div>
+    
+    <script type="text/javascript">
+
+      // 第1步:定义组件
+       const school = Vue.extend({
+        // 配置模板
+        template:`
+            <div>
+                 <h2>学校信息:{{schoolName}}</h2>
+                <h2>学校地址:{{address}}</h2>
+             </div>
+        `,
+        // 配置数据
+        data() {
+            return {
+                schoolName:"using as reference the 200-day moving average",
+                address:"Secondly,"
+            }            
+        },
+       })
+
+       const student = Vue.extend({
+        template:`
+            <div>
+                <h2>学生姓名:{{studentName}}</h2>
+                <h2>学生年龄:{{age}}</h2>
+            </div> `,
+        data() {
+            return {
+                studentName:"to only buy stocks,currencies,or cryptos on pullbacks not breakouts",
+                age:25
+            }
+        },
+       })
+
+       new Vue({        
+          el:"#root",
+          // 2 配置组件
+          components:{
+            school:school,
+            student:student
+          }
+                    
+       })
+
+    </script>
+    
+</body>
+</html>
+
