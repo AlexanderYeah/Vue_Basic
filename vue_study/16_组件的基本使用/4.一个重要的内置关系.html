@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src = "../js/vue.js"></script>
+    <title>template</title>
+</head>
+<body>
+    <!-- 1. 一个重要的内置关系：VueComponent.prototype,__proto__ === Vue.prototype
+         2. 为什么要有这个关系：让组件实例对象（vc）可以访问到Vue 原型上的属性,方法    
+         vue 让VueComponent 的原型对象的__proto__隐式原型对象指向了Vue原型对象
+    -->
+    <div id = "root">        
+               
+    </div>
+
+    <script type="text/javascript">
+       
+    // 函数的prototype属性：在定义函数时自动添加的，默认时一个空的Object对象
+    // 对象的__proto__属性：创建对象时自动添加的。默认值为构造函数的prototype属性值
+       // 定义一个构造函数
+       function Demo(){
+         this.a = 1
+         this.b = 2
+       }
+       // 创建一个实例对象
+       const d = new Demo()
+
+       // 显示原型属性
+       //   Demo.prototype 是一个Object 
+       console.log( "@" + Demo.prototype)
+
+       // 隐式原型属性
+       console.log("@" + d.__proto__)
+
+       console.log(Demo.prototype === d.__proto__)
+       // 程序员通过显式原型属性追加一个x属性 值为99
+       Demo.prototype.x = 99
+
+       console.log("@",d.x)
+       
+
+    </script>
+    
+</body>
+</html>
+
