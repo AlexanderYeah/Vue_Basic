@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sessionStorage</title>
+</head>
+<body>
+    <h2> 回话存储 sessionStorage</h2>
+    <hr>
+    <button onclick="addData()">点我新增数据</button>
+    <button onclick="readData()">点我读取数据</button>
+     <button onclick="deleteData()">点我删除数据</button>
+
+    <script>
+
+        function addData(){
+            let p = {
+                name:"holiday",
+                age:999
+            }
+            // 传递的参数都是字符串 即使不是字符串 也会调用toSting 方法给你转换成字符串
+            window.sessionStorage.setItem('name','leonardo')
+            window.sessionStorage.setItem('age',666)
+            window.sessionStorage.setItem('person',JSON.stringify(p))            
+        
+        }   
+        
+
+        function readData(){
+            let name = window.sessionStorage.getItem('name')
+            let age = window.sessionStorage.getItem('age')            
+            let person = JSON.parse(window.sessionStorage.getItem('person'))
+            alert(age)
+        }
+
+        // 删除
+        function deleteData(){
+            window.sessionStorage.removeItem('name')
+        }
+
+        function deleteAll(){
+            //清空所有
+            window.sessionStorage.clear()
+        }
+
+    </script>
+</body>
+</html>
